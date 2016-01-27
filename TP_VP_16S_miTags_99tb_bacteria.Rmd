@@ -21,7 +21,7 @@ opts_chunk$set(cache=TRUE, autodep=TRUE)
 
 # 1) Data overview
 
-Samples with less than 5000 reads are removed: 
+Samples with less than 167 reads are removed: 
 
 ``` {r load_data, echo=FALSE, message=FALSE}
 #setwd("/genwork/lrubinat")
@@ -31,8 +31,8 @@ setwd("/home/laura/Documents/TFM/genwork/data_analysis/TP_VP_16S_miTags_99tb/TP_
 tp_vp_16SmiTags_b <- read.table(file="/home/laura/Documents/TFM/home/data/TARASPINA/TP_VP_16S_miTags_99tb_bacteria.txt", head=TRUE, fill=TRUE)
 
 #table dimensions and format before setting column names
-dim(tp_vp_16SmiTags_b) # 44068   274
-tp_vp_16SmiTags_b[1:5,1:5]
+#dim(tp_vp_16SmiTags_b) # 44068   274
+#tp_vp_16SmiTags_b[1:5,1:5]
 
 #row names = OTU name (option A)
 row.names(tp_vp_16SmiTags_b)<-tp_vp_16SmiTags_b[,1]
@@ -40,8 +40,8 @@ row.names(tp_vp_16SmiTags_b)<-tp_vp_16SmiTags_b[,1]
 tp_vp_16SmiTags_b<-tp_vp_16SmiTags_b[,-1]
 tp_vp_16SmiTags_b[is.na(tp_vp_16SmiTags_b)]<-0
 
-#dim(tp_vp_16SmiTags_b)
-#tp_vp_16SmiTags_b[1:5,1:5]
+dim(tp_vp_16SmiTags_b)
+tp_vp_16SmiTags_b[1:5,1:5]
 
 #remove samples with less than 167 reads
 tp_vp_16SmiTags_b_min167<-tp_vp_16SmiTags_b[,colSums(tp_vp_16SmiTags_b) > 167]
@@ -55,9 +55,6 @@ amplicons_per_sample_tp_vp_16SmiTags_b[which(colSums(tp_vp_16SmiTags_b)<167)]
 #remove samples with less than 167 reads in the "TP_VP_16S_miTags_99tb_chlp_cyanob" and "TP_VP_16S_miTags_99tb_euk" datasets (so that we can compare the relative abundance of 16S and 18S OTUs considering the same samples)
 tp_vp_16SmiTags_b_v2<-subset(tp_vp_16SmiTags_b_min167, select=-c(X124_DCM_0d2.0d45, X124_SUR_0d2.0d45, X125_SUR_0d2.0d45, X36_SUR_0d1.0d2, X37_OMZ_0d2.1d6, X38_OMZ_0d2.1d6, X38_SUR_0d1.0d2, X39_OMZ_0d2.1d6, X39_SUR_0d1.0d2, X41_SUR_0d1.0d2, X7_SUR_0d2.1d6, X93_SUR_0d2.3, X123_DCM_0d1.0d2, X125_DCM_0d1.0d2, MP0317, MP0320, MP0322, MP0536, MP0784, MP0882, MP0884, MP0886, MP1164, MP1166, MP1178, MP1337, MP1413, MP1415, MP1419, MP1523, MP1525, MP1599, MP1639, MP1677, MP1678, MP1679, MP1681, MP1682, MP1849, MP1851, MP1853, MP1879, MP2000, MP2043, MP2235, MP2237, MP2658, MP2817, MP427, MP46, MP464, MP468, MP692))
 ```
-
-
-
 
 Table dimensions and content outline:
 
